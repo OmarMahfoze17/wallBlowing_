@@ -1,0 +1,37 @@
+!****************************************************
+!--------- Define the whole values of the wall ------
+!****************************************************
+
+!print *, xlx ,zlz,nx,nz,dx,dz
+lx0=1.
+lx1=1.
+lz0=1.
+lz1=1.
+
+lx01=lx0+lx1
+lz01=lz0+lz1
+
+
+
+uyWall=0.
+
+ii=0;
+jj=0;
+do i=1,nx
+    do j=1,nz
+        if (dx*ii<=lx1) then           
+            if (dz*jj<=lz1)  then
+                uyWall(i,j)=1.;
+		coun=coun+1;
+            endif
+        endif
+        jj=jj+1;
+        if (dz*jj>lz1+lz0) then
+            jj=0;
+        endif        
+    enddo    
+    ii=ii+1;
+    if (dx*ii>lx1+lx0) then
+        ii=0;
+    endif    
+enddo
